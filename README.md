@@ -29,7 +29,7 @@ const cas = new kCas({
   appKey: 'INC-OEWM-CORE-WEB',
   appSecret: 'INC-OEWM-XXX-XXXX',
   authService: '/basp',
-  casService: 'http://cas.sit.abc.com',
+  casService: 'http://cas.abc.com',
 });
 
 初始化后cas有以下属性

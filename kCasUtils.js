@@ -6,20 +6,21 @@ function getUrlVlaueByKey(key, url = window.location.href) {
 
 function getRemoveCasKeyUrl({
   url = window.location.href,
-  key = 'ticket|language|co(.?)ntry|variant',
+  key = "ticket|language|co(.?)ntry|variant",
 } = {}) {
-  const reg = new RegExp(`[?|&]?(${key})=([^&]*)`, 'g');
-  return url.replace(reg, '');
+  const reg = new RegExp(`[?|&]?(${key})=([^&]*)`, "g");
+  return url.replace(reg, "");
 }
 
 function getDeviceId() {
   const s = [];
-  const hexDigits = 'abcdef';
+  const hexDigits = "abcdef";
   for (let i = 0; i < 10; i += 1) {
     s[i] = hexDigits.substr(Math.floor(Math.random() * 6), 1);
   }
-  const uuid = s.join('') + new Date().getTime();
+  const uuid = s.join("") + new Date().getTime();
   return uuid;
 }
 
 export { getDeviceId, getRemoveCasKeyUrl, getUrlVlaueByKey };
+export default { getDeviceId, getRemoveCasKeyUrl, getUrlVlaueByKey };
