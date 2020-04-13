@@ -1,0 +1,8 @@
+{
+  "name": "kcas",
+  "version": "1.0.0",
+  "description": "CAS登录解决方案",
+  "main": "kCas.js",
+  "author": "550714829@qq.com",
+  "license": "ISC"
+}
