@@ -2,7 +2,20 @@
   "name": "kcas",
   "version": "1.0.1",
   "description": "CAS登录解决方案",
-  "main": "kCas.js",
-  "author": "550714829@qq.com",
-  "license": "ISC"
+  "main": "./dist/kCas.esm.js",
+  "module": "./lib/Kcas.js",
+  "typings": "./lib/index.d.ts",
+  "author": "annie <550714829@qq.com>",
+  "license": "ISC",
+  "scripts": {
+    "test": "father test",
+    "test:c": "father test --coverage",
+    "build": "father build"
+  },
+  "dependencies": {
+    "khttpclient": "^1.0.0"
+  },
+  "devDependencies": {
+    "father": "^2.29.2"
+  }
 }

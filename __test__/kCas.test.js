@@ -1,7 +1,12 @@
-import cas from "@/utils/initCas";
-import { kCas, kHttpClient } from "../kCas";
-import { getRemoveCasKeyUrl, getDeviceId } from "../kCasUtils";
-
+import { kCas } from "../lib/kCas";
+import { getRemoveCasKeyUrl, getDeviceId } from "../lib/kCasUtils";
+import kHttpClient from "../lib/kHttpClient";
+const cas = new kCas({
+  appKey: "appKey",
+  appSecret: "appSecret",
+  authService: "authService",
+  casService: "casService"
+});
 const get = jest.spyOn(kHttpClient, "get");
 afterAll(() => {
   get.mockRestore();
@@ -10,14 +15,14 @@ describe("test kCas", () => {
   beforeEach(() => {
     Object.defineProperty(window, "location", {
       value: { href: "http://localhost" },
-      writable: true,
+      writable: true
     });
   });
   it("kCas authLogout test done", () => {
     get.mockImplementationOnce(() => Promise.resolve("done"));
     cas
       .authLogout()
-      .then((res) => {
+      .then(res => {
         expect(res).toBe("done");
         expect(get).toHaveBeenCalledWith(cas.authLogoutUrl);
       })
@@ -34,7 +39,7 @@ describe("test kCas", () => {
     get.mockImplementationOnce(() => Promise.resolve("done"));
     cas
       .authCheckToken()
-      .then((res) => {
+      .then(res => {
         expect(res).toBe("done");
         expect(get).toHaveBeenCalledWith(cas.authTokenUrl);
       })
@@ -47,12 +52,12 @@ describe("test kCas", () => {
       service: getRemoveCasKeyUrl(),
       appKey,
       appSecret,
-      deviceId: getDeviceId(),
+      deviceId: getDeviceId()
     };
     get.mockImplementationOnce(() => Promise.resolve("done"));
     cas
       .authCheckTick()
-      .then((res) => {
+      .then(res => {
         expect(res).toBe("done");
         expect(get).toHaveBeenCalledWith(cas.authTokenUrl, params);
       })
@@ -62,7 +67,7 @@ describe("test kCas", () => {
     get.mockImplementationOnce(() => Promise.resolve("done"));
     cas
       .authRoles()
-      .then((res) => {
+      .then(res => {
         expect(res).toBe("done");
         expect(get).toHaveBeenCalledWith(cas.authRolesUrl);
       })
@@ -123,7 +128,7 @@ describe("test kCas", () => {
     spyAuthCheckTick.mockImplementationOnce(() =>
       Promise.resolve({ errorMessage: "error" })
     );
-    await cas.casLogin().catch((error) => {
+    await cas.casLogin().catch(error => {
       expect(error).toBe("error");
     });
     spyAuthCheckTick.mockImplementationOnce(() => Promise.reject());
